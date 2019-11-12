@@ -9,14 +9,14 @@ module.exports = {
         publicPath: '/'
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.ts', '.tsx', '.js']
     },
     devServer: {
         historyApiFallback: true
     },
     module: {
         rules: [{
-            test: /\.jsx?/,
+            test: /\.(ts|js))x?/,
             loader: 'babel-loader'
         }]
     }
