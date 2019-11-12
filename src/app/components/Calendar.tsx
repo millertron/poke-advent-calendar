@@ -1,5 +1,6 @@
 import React from 'react'
 import { Pocket } from '../types/types'
+import { CalendarPocket } from './CalendarPocket'
 
 type Props = {
     pockets: Pocket[]
@@ -8,7 +9,7 @@ type Props = {
 export const Calendar =({pockets}: Props) => {
 
     const pocketComponents = pockets.map(pocket => (
-        <div key={pocket.dayNum} className={pocket.available ? "available" : "unavailable"}>Pocket {pocket.dayNum}</div>
+        <CalendarPocket key={pocket.dayNum} pocket={pocket} />
     ))
 
     return (

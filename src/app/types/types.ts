@@ -3,3 +3,4 @@ export type Pocket = {
     pokeId: number | null,
     available: boolean
 }
+
