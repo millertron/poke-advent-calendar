@@ -1,4 +1,4 @@
-import { Pocket, ImageData } from '../types/types'
+import { Pocket } from '../types/types'
 
 function isPastNthDayOfMonth(n:number) :boolean {
     const monthToCheck = 11
