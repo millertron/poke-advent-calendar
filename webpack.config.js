@@ -2,9 +2,9 @@ const path = require("path")
 
 module.exports = {
     mode: "development",
-    entry: path.resolve(__dirname, 'src', 'app'),
+    entry: path.resolve(__dirname, `src`, `app`),
     output: {
-        path: path.resolve(__dirname,),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         publicPath: '/'
     },
@@ -16,7 +16,8 @@ module.exports = {
     },
     module: {
         rules: [{
-            test: /\.(ts|js))x?/,
+            test: /\.(ts|js)x?/,
+            exclude: /node_modules/,
             loader: 'babel-loader'
         }]
     }
