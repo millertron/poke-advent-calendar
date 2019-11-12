@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Dashboard } from './components/Dashboard'
+import { Calendar } from './components/Calendar'
+import { defaultState } from './server/defaultState'
 
-ReactDOM.render(<Dashboard />, document.getElementById("app"))
+ReactDOM.render(<Calendar pockets={defaultState.pockets} />, document.getElementById("app"))
