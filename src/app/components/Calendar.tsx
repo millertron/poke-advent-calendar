@@ -1,6 +1,8 @@
 import React from 'react'
 import { Pocket } from '../types/types'
 import { CalendarPocket } from './CalendarPocket'
+import { connect } from 'react-redux'
+import { State } from '../server/defaultState'
 
 type Props = {
     pockets: Pocket[]
@@ -23,3 +25,11 @@ export const Calendar =({pockets}: Props) => {
         </div>
     )
 }
+
+function mapStateToProps(state: State) :Props {
+    return {
+        pockets: state.pockets
+    }
+}
+
+export default connect(mapStateToProps)(Calendar)

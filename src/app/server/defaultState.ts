@@ -10,7 +10,12 @@ function isPastNthDayOfMonth(n:number) :boolean {
         && n <= today.getDate()
 }
 
-export const defaultState = {
+export type State = {
+    pockets: Pocket[],
+    pokeDataList: string[]
+}
+
+export const defaultState = <State>{
     pockets: <Pocket[]>[
         <Pocket> { dayNum: 1, pokeId: null, available: isPastNthDayOfMonth(1) },
         <Pocket> { dayNum: 2, pokeId: null, available: isPastNthDayOfMonth(2) },
