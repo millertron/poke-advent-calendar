@@ -26,10 +26,6 @@ export const Calendar =({pockets}: Props) => {
     )
 }
 
-const mapStateToProps = (state: State) :Props => {
-    return {
-        pockets: state.pockets
-    }
-}
+const mapStateToProps = (state: State) :Props => ({ pockets: state.pockets })
 
 export default connect(mapStateToProps)(Calendar)

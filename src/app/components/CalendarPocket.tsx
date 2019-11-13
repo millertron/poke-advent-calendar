@@ -4,25 +4,32 @@ import { ImageHolder } from "./ImageHolder";
 import { isNull } from "util";
 import { State } from "../server/defaultState";
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
+import * as actions from '../store/actions'
 
 type Props = {
-    dayNum: Number
+    dayNum: number
     pocket?: Pocket
+    openPocketFunction?: Function
 }
 
-const createImageHolderElement = (pocket :Pocket) => (
-    <ImageHolder imageDataKey={pocket.dayNum} />
-)
+const createImageHolderElement = (pocket :Pocket) => {
+    return (
+        <ImageHolder imageDataKey={pocket.pokeId || 0} />
+    )
+}
 
-const createButtonElement = (pocket: Pocket) => (
-    <button>Click me!</button>
+const createButtonElement = (pocket: Pocket, openPocketFunction: Function) => (
+    <button onClick={() => openPocketFunction(pocket.dayNum)}>Click me!</button>
 )
 
 const blankPocket:Pocket = {dayNum: 0, pokeId: null, available: false}
 
-export const CalendarPocket = ({pocket = blankPocket} :Props) => {
+const blankFunction:Function = (num:number) => { console.log("No function defined", num)}
 
-    const pocketContent = isNull(pocket.pokeId) ? createButtonElement(pocket) : createImageHolderElement(pocket)
+export const CalendarPocket = ({pocket = blankPocket, openPocketFunction = blankFunction} :Props) => {
+
+    const pocketContent = isNull(pocket.pokeId) ? createButtonElement(pocket, openPocketFunction) : createImageHolderElement(pocket)
     return (
         <div className={pocket.available ? "available" : "unavailable"}>
             {pocket.dayNum}
@@ -31,13 +38,17 @@ export const CalendarPocket = ({pocket = blankPocket} :Props) => {
     )
 }
 
-const mapStateToFunction = (state:State, ownProp:Props) :Props => {
-    let ownPocket = ownProp.pocket
-    let storePocket = state.pockets.find(pocket => pocket.dayNum === ownProp.dayNum) || ownPocket
+const mapStateToFunction = (state:State, ownProps:Props) :Props => {
+    let ownPocket = ownProps.pocket
+    let storePocket = state.pockets.find(pocket => pocket.dayNum === ownProps.dayNum) || ownPocket
     return {
         pocket: storePocket,
-        dayNum: ownProp.dayNum
+        dayNum: ownProps.dayNum
     }
 }
 
-export default connect(mapStateToFunction)(CalendarPocket)
+const mapDispatchToProps = (dispatch :Dispatch, ownProps:Props) => ({
+    openPocketFunction: () => dispatch(actions.openPocket(ownProps.dayNum))
+})
+
+export default connect(mapStateToFunction, mapDispatchToProps)(CalendarPocket)

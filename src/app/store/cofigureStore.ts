@@ -1,15 +1,24 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { defaultState } from '../server/defaultState'
 import { Pocket } from '../types/types'
 import * as actions from "./actions"
+import { isNull } from 'util'
+import { createLogger } from 'redux-logger'
 
 export const store = createStore(
     combineReducers({
         pockets(pockets:Pocket[] = defaultState.pockets, action) :Pocket[]{
             if (action.type === actions.OPEN_POCKET) {
                 console.log("OPEN POCKET NOW FOR DAY:", action.dayNum)
+                const pokeId = Math.floor(Math.random() * 151) + 1
+                return pockets.map((pocket) => {
+                    if (pocket.dayNum === action.dayNum && pocket.available && isNull(pocket.pokeId)) {
+                        return { dayNum: pocket.dayNum, pokeId: pokeId, available: true }
+                    } else return pocket
+                })
             }
             return pockets
         }
-    })
+    }),
+    applyMiddleware(createLogger({ collapsed: true }))
 )
