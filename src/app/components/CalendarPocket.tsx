@@ -18,10 +18,11 @@ const createButtonElement = (pocket: Pocket) => (
     <button>Click me!</button>
 )
 
-export const CalendarPocket = ({pocket = {dayNum: 0, pokeId: null, available: false}} :Props) => {
+const blankPocket:Pocket = {dayNum: 0, pokeId: null, available: false}
+
+export const CalendarPocket = ({pocket = blankPocket} :Props) => {
 
     const pocketContent = isNull(pocket.pokeId) ? createButtonElement(pocket) : createImageHolderElement(pocket)
-
     return (
         <div className={pocket.available ? "available" : "unavailable"}>
             {pocket.dayNum}
