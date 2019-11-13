@@ -1,8 +1,8 @@
 import React from 'react'
 import { Pocket } from '../types/types'
-import { CalendarPocket } from './CalendarPocket'
 import { connect } from 'react-redux'
 import { State } from '../server/defaultState'
+import CalendarPocket from './CalendarPocket'
 
 type Props = {
     pockets: Pocket[]
@@ -11,7 +11,7 @@ type Props = {
 export const Calendar =({pockets}: Props) => {
 
     const pocketComponents = pockets.map(pocket => (
-        <CalendarPocket key={pocket.dayNum} pocket={pocket} />
+        <CalendarPocket key={pocket.dayNum} dayNum={pocket.dayNum} />
     ))
 
     return (
@@ -26,7 +26,7 @@ export const Calendar =({pockets}: Props) => {
     )
 }
 
-function mapStateToProps(state: State) :Props {
+const mapStateToProps = (state: State) :Props => {
     return {
         pockets: state.pockets
     }

@@ -2,9 +2,12 @@ import { Pocket } from "../types/types";
 import React from "react";
 import { ImageHolder } from "./ImageHolder";
 import { isNull } from "util";
+import { State } from "../server/defaultState";
+import { connect } from "react-redux";
 
 type Props = {
-    pocket: Pocket
+    dayNum: Number
+    pocket?: Pocket
 }
 
 const createImageHolderElement = (pocket :Pocket) => (
@@ -15,7 +18,7 @@ const createButtonElement = (pocket: Pocket) => (
     <button>Click me!</button>
 )
 
-export const CalendarPocket = ({pocket} :Props) => {
+export const CalendarPocket = ({pocket = {dayNum: 0, pokeId: null, available: false}} :Props) => {
 
     const pocketContent = isNull(pocket.pokeId) ? createButtonElement(pocket) : createImageHolderElement(pocket)
 
@@ -26,3 +29,14 @@ export const CalendarPocket = ({pocket} :Props) => {
         </div>
     )
 }
+
+const mapStateToFunction = (state:State, ownProp:Props) :Props => {
+    let ownPocket = ownProp.pocket
+    let storePocket = state.pockets.find(pocket => pocket.dayNum === ownProp.dayNum) || ownPocket
+    return {
+        pocket: storePocket,
+        dayNum: ownProp.dayNum
+    }
+}
+
+export default connect(mapStateToFunction)(CalendarPocket)
