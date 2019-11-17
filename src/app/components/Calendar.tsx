@@ -13,6 +13,10 @@ export const Calendar =({pockets}: Props) => {
 
     // Can use url parameter: const { urlKey } = useParams(); 
 
+    
+    for (let i = pockets.length; i < 25; i++) {
+        pockets.push({ dayNum: (i + 1), pokeId: null })
+    }
     const pocketComponents = pockets.map(pocket => (
         <CalendarPocket key={pocket.dayNum} dayNum={pocket.dayNum} />
     ))

@@ -23,7 +23,7 @@ const createButtonElement = (pocket: Pocket, openPocketFunction: Function) => (
     <button onClick={() => openPocketFunction(pocket.dayNum)}>Click me!</button>
 )
 
-const blankPocket:Pocket = {dayNum: 0, pokeId: null, available: false}
+const blankPocket:Pocket = {dayNum: 0, pokeId: null}
 
 const blankFunction:Function = (num:number) => { console.log("No function defined", num)}
 
@@ -31,7 +31,7 @@ export const CalendarPocket = ({pocket = blankPocket, openPocketFunction = blank
 
     const pocketContent = isNull(pocket.pokeId) ? createButtonElement(pocket, openPocketFunction) : createImageHolderElement(pocket)
     return (
-        <div className={pocket.available ? "available" : "unavailable"}>
+        <div>
             {pocket.dayNum}
             {pocketContent}
         </div>
