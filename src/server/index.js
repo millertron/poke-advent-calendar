@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const MongoClient = require('mongodb')
 const authentication = require('./helpers/authentication')
-const pocketRepository = require('./repositories/pocketRepository')
+const pocketRepository = require('./repositories/pockets')
 
 const app = express()
 
