@@ -9,7 +9,7 @@ import { BrowserRouter, Route } from 'react-router-dom'
 ReactDOM.render(
     <BrowserRouter>
         <Provider store={store}>
-            <Route path="/:urlKey" render={()=>(<Calendar />)} />
+            <Route path="/adventcalendar/:urlKey" render={()=>(<Calendar />)} />
         </Provider>
     </BrowserRouter>
 , document.getElementById("app"))

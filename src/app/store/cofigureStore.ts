@@ -19,7 +19,6 @@ export const store = createStore(
     combineReducers({
         pockets(pockets:Pocket[] = defaultState.pockets, action) :Pocket[]{
             if (action.type === actions.OPEN_POCKET) {
-                console.log("OPEN POCKET NOW FOR DAY:", action.dayNum)
                 const pokeId = Math.floor(Math.random() * 151) + 1
                 const available = isPastNthDayOfMonth(action.dayNum)
                 return pockets.map((pocket) => {
