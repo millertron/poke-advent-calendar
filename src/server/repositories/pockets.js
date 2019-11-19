@@ -1,18 +1,21 @@
+const db = require('../helpers/db')
+
 module.exports = {
 
-    getPocketsForKey: (db, key) => {
-        return db.collection('pockets').find({ key: key }).toArray()
+    getPocketsForKey: (key) => {
+        return db.get().collection('pockets').find({ key: key }).toArray()
     },
 
-    insertPocket: async (db, key, dayNum, pokeId) => {
-        const existing = await db.collection('pockets').find({ key: key, dayNum: dayNum }).toArray()
+    insertPocket: async (key, dayNum, pokeId) => {
+        const database = db.get()
+        const existing = await database.collection('pockets').find({ key: key, dayNum: dayNum }).toArray()
         if (existing.length == 0) {
-            db.collection('pockets').insertOne({ key: key, dayNum: dayNum, pokeId: pokeId })
+            database.collection('pockets').insertOne({ key: key, dayNum: dayNum, pokeId: pokeId })
         }
     },
 
-    updatePocket: (db, key, dayNum, pokeId) => {
-        db.collection('pockets').updateOne(
+    updatePocket: (key, dayNum, pokeId) => {
+        db.get().collection('pockets').updateOne(
             { key: key, dayNum: dayNum, pokeId: null },
             { $set: { key: key, dayNum: dayNum, pokeId: pokeId }}
         )
