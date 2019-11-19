@@ -6,6 +6,7 @@ const app = express()
 
 app.get('/', (req, res) => res.send("Foo!"))
 
+app.use(express.json())
 app.use('/pockets', pocketRoutes)
 
 db.connect((err, client) => {
