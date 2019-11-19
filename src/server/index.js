@@ -14,12 +14,10 @@ app.get('/', (req, res) => res.send("Foo!"))
 
 const fetchPocketsForUrlKey = async (db, urlKey, res) => {
     const authenticated = await authentication.validateUrlKey(db, urlKey)
-    console.log("Authentication status:", authenticated)
     if (!authenticated) {
         res.status(401).send("Invalid URL Key!")
     } else {
         const pockets = await pocketRepository.getPocketsForKey(db, urlKey)
-        console.log(pockets)
         res.status(200).json(pockets)
     }
 }
