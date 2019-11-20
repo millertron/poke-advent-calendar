@@ -8,6 +8,7 @@ import { Dispatch } from "redux";
 import * as actions from '../store/actions'
 
 type Props = {
+    urlKey: String,
     dayNum: number
     pocket?: Pocket
     openPocketFunction?: Function
@@ -23,7 +24,7 @@ const createButtonElement = (pocket: Pocket, openPocketFunction: Function) => (
     <button onClick={() => openPocketFunction(pocket.dayNum)}>Click me!</button>
 )
 
-const blankPocket:Pocket = {dayNum: 0, pokeId: null}
+const blankPocket:Pocket = {urlKey: "", dayNum: 0, pokeId: null}
 
 const blankFunction:Function = (num:number) => { console.log("No function defined", num)}
 
@@ -42,13 +43,14 @@ const mapStateToFunction = (state:State, ownProps:Props) :Props => {
     let ownPocket = ownProps.pocket
     let storePocket = state.pockets.find(pocket => pocket.dayNum === ownProps.dayNum) || ownPocket
     return {
+        urlKey: ownProps.urlKey,
         pocket: storePocket,
         dayNum: ownProps.dayNum
     }
 }
 
 const mapDispatchToProps = (dispatch :Dispatch, ownProps:Props) => ({
-    openPocketFunction: () => dispatch(actions.openPocket(ownProps.dayNum))
+    openPocketFunction: () => dispatch(actions.openPocket(ownProps.urlKey, ownProps.dayNum))
 })
 
 export default connect(mapStateToFunction, mapDispatchToProps)(CalendarPocket)

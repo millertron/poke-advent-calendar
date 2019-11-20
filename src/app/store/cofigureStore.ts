@@ -23,7 +23,7 @@ export const store = createStore(
                 const available = isPastNthDayOfMonth(action.dayNum)
                 return pockets.map((pocket) => {
                     if (pocket.dayNum === action.dayNum && available && isNull(pocket.pokeId)) {
-                        return { dayNum: pocket.dayNum, pokeId: pokeId, available: true }
+                        return { urlKey: pocket.urlKey, dayNum: pocket.dayNum, pokeId: pokeId, available: true }
                     } else return pocket
                 })
             }

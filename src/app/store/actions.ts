@@ -13,12 +13,14 @@ export const fetchPockets = (dayNum: number) => ({
     dayNum
 })
 
-export const requestOpenPocket = (dayNum: number) => ({
+export const requestOpenPocket = (urlKey:String, dayNum: number) => ({
     type: REQUEST_OPEN_POCKET,
+    urlKey,
     dayNum
 })
 
-export const openPocket = (dayNum: number) => ({
+export const openPocket = (urlKey:String, dayNum: number) => ({
     type: OPEN_POCKET,
+    urlKey,
     dayNum
 })
