@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const db = require('./helpers/database')
 const pocketRoutes = require('./routes/pockets')
 
@@ -6,6 +7,7 @@ const app = express()
 
 app.get('/', (req, res) => res.send("Foo!"))
 
+app.use(cors())
 app.use(express.json())
 app.use('/pockets', pocketRoutes)
 

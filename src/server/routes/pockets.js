@@ -33,7 +33,7 @@ const createPocket = async (urlKey, dayNum, pokeId, res) => {
     if (isPastNthDayOfMonth(dayNum)) {
         await pocketRepository.insertPocket(urlKey, dayNum, pokeId)
         console.log("Successful pocket insert!")
-        res.status(200).send({key: urlKey, dayNum: dayNum, pokeId: pokeId})
+        res.status(200).send({urlKey: urlKey, dayNum: dayNum, pokeId: pokeId})
     } else {
         res.status(400).send({ message: "Pocket not available" })
     }
@@ -48,7 +48,7 @@ const updatePocket = async (urlKey, dayNum, pokeId, res) => {
     if (isPastNthDayOfMonth(dayNum)) {
         pocketRepository.updatePocket(urlKey, dayNum, pokeId, ()=> {
             console.log("Successful pocket update!")
-            res.status(200).send({key: urlKey, dayNum: dayNum, pokeId: pokeId})
+            res.status(200).send({urlKey: urlKey, dayNum: dayNum, pokeId: pokeId})
         })
     } else {
         res.status(400).send({ message: "Pocket not available" })

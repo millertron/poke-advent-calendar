@@ -15,20 +15,22 @@ function isPastNthDayOfMonth(n:number) :boolean {
         && n <= today.getDate()
 }
 
-export const store = createStore(
-    combineReducers({
-        pockets(pockets:Pocket[] = defaultState.pockets, action) :Pocket[]{
-            if (action.type === actions.OPEN_POCKET) {
-                const pokeId = Math.floor(Math.random() * 151) + 1
-                const available = isPastNthDayOfMonth(action.dayNum)
-                return pockets.map((pocket) => {
-                    if (pocket.dayNum === action.dayNum && available && isNull(pocket.pokeId)) {
-                        return { urlKey: pocket.urlKey, dayNum: pocket.dayNum, pokeId: pokeId, available: true }
-                    } else return pocket
-                })
+export const store = () => {
+    return createStore(
+        combineReducers({
+            pockets(pockets:Pocket[] = defaultState.pockets, action) :Pocket[]{
+                if (action.type === actions.OPEN_POCKET) {
+                    const pokeId = Math.floor(Math.random() * 151) + 1
+                    const available = isPastNthDayOfMonth(action.dayNum)
+                    return pockets.map((pocket) => {
+                        if (pocket.dayNum === action.dayNum && available && isNull(pocket.pokeId)) {
+                            return { urlKey: pocket.urlKey, dayNum: pocket.dayNum, pokeId: pokeId, available: true }
+                        } else return pocket
+                    })
+                }
+                return pockets
             }
-            return pockets
-        }
-    }),
-    applyMiddleware(createLogger({ collapsed: true }))
-)
+        }),
+        applyMiddleware(createLogger({ collapsed: true }))
+    )
+}
