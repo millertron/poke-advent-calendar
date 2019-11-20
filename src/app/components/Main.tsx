@@ -10,12 +10,15 @@ import { defaultState } from '../server/defaultState'
 export const Main = () => {
     const { urlKey } = useParams()
     const [thisStore, setStore] = React.useState(store())
+    const [greeting, setGreeting] = React.useState("")
 
     React.useEffect(() => {
         if (defaultState.pockets.length === 0) {  
             axios.get(`http://localhost:3000/pockets/${urlKey}`)
                 .then((response) => {
-                    const pockets:Pocket[] = response.data
+                    setGreeting(`Merry Christmas, ${response.data.user}`)
+
+                    const pockets:Pocket[] = response.data.pockets
                     for (let i = pockets.length; i < 25; i++) {
                         pockets.push({ urlKey: urlKey || "", dayNum: (i + 1), pokeId: null })
                     }
@@ -31,6 +34,7 @@ export const Main = () => {
 
     return (
         <Provider store={thisStore}>
+            <h1>{greeting}</h1>
             <Calendar />
         </Provider>
     )

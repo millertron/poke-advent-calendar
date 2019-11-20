@@ -16,9 +16,6 @@ export const Calendar =({pockets}: Props) => {
 
     return (
         <div>
-            <div>
-                <h2>Poke Calendar</h2>
-            </div>
             <div id="pocketContainer">
                 {pocketComponents}
             </div>
