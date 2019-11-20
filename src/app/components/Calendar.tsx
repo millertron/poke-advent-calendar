@@ -22,7 +22,6 @@ export const Calendar =({pockets}: Props) => {
         ))
     }
 
-
     return (
         <div>
             <div>
