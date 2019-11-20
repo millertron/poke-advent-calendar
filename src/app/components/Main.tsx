@@ -19,7 +19,6 @@ export const Main = () => {
                     for (let i = pockets.length; i < 25; i++) {
                         pockets.push({ urlKey: urlKey || "", dayNum: (i + 1), pokeId: null })
                     }
-                    pockets.map((pocket) => console.log(pocket))
                     defaultState.pockets = pockets
                     setStore(store())
                 })

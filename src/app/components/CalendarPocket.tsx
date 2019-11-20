@@ -6,6 +6,7 @@ import { State } from "../server/defaultState";
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import * as actions from '../store/actions'
+import * as utils from '../helper/utils'
 
 type Props = {
     urlKey: String,
@@ -20,9 +21,10 @@ const createImageHolderElement = (pocket :Pocket) => {
     )
 }
 
-const createButtonElement = (pocket: Pocket, openPocketFunction: Function) => (
-    <button onClick={() => openPocketFunction(pocket.dayNum)}>Click me!</button>
-)
+const createButtonElement = (pocket: Pocket, openPocketFunction: Function) => {
+    const disabled = !utils.isPastNthDayOfMonth(pocket.dayNum)
+    return (<button disabled={disabled} onClick={() => openPocketFunction(pocket.dayNum)}>Click me!</button>)
+}
 
 const blankPocket:Pocket = {urlKey: "", dayNum: 0, pokeId: null}
 
@@ -50,7 +52,7 @@ const mapStateToFunction = (state:State, ownProps:Props) :Props => {
 }
 
 const mapDispatchToProps = (dispatch :Dispatch, ownProps:Props) => ({
-    openPocketFunction: () => dispatch(actions.openPocket(ownProps.urlKey, ownProps.dayNum))
+    openPocketFunction: () => dispatch(actions.requestOpenPocket(ownProps.urlKey, ownProps.dayNum))
 })
 
 export default connect(mapStateToFunction, mapDispatchToProps)(CalendarPocket)
