@@ -6,7 +6,6 @@ import { isNull } from 'util'
 import { createLogger } from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 import { pocketOpenSaga } from './sagas'
-import * as utils from '../helper/utils'
 
 export const store = () => {
     const sagaMiddleware = createSagaMiddleware()
@@ -14,11 +13,9 @@ export const store = () => {
         combineReducers({
             pockets(pockets:Pocket[] = defaultState.pockets, action) :Pocket[]{
                 if (action.type === actions.OPEN_POCKET) {
-                    const pokeId = Math.floor(Math.random() * 151) + 1
-                    const available = utils.isPastNthDayOfMonth(action.dayNum)
                     return pockets.map((pocket) => {
-                        if (pocket.dayNum === action.dayNum && available && isNull(pocket.pokeId)) {
-                            return { urlKey: pocket.urlKey, dayNum: pocket.dayNum, pokeId: pokeId, available: true }
+                        if (pocket.dayNum === action.dayNum) {
+                            return { urlKey: pocket.urlKey, dayNum: pocket.dayNum, pokeId: action.pokeId }
                         } else return pocket
                     })
                 }

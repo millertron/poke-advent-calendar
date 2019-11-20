@@ -19,8 +19,9 @@ export const requestOpenPocket = (urlKey:String, dayNum: number) => ({
     dayNum
 })
 
-export const openPocket = (urlKey:String, dayNum: number) => ({
+export const openPocket = (urlKey:String, dayNum: number, pokeId: number) => ({
     type: OPEN_POCKET,
     urlKey,
-    dayNum
+    dayNum,
+    pokeId
 })
