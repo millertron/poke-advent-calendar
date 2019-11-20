@@ -1,4 +1,4 @@
-const db = require('../helpers/db')
+const db = require('../helpers/database')
 
 module.exports.validateUrlKey = async (queryKey) => {
     const database = db.get()

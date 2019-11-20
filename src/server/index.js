@@ -1,5 +1,5 @@
 const express = require('express')
-const db = require('./helpers/db')
+const db = require('./helpers/database')
 const pocketRoutes = require('./routes/pockets')
 
 const app = express()
