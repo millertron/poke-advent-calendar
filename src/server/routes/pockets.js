@@ -29,8 +29,19 @@ const isPastNthDayOfMonth = (n) => {
         && n <= today.getDate()
 }
 
-const createPocket = async (urlKey, dayNum, pokeId, res) => {
+const generateNewRandomPokeId = (excludedValues) => {
+    let pokeId = null
+    while(pokeId == null || excludedValues.includes(pokeId)) {
+        pokeId = Math.floor(Math.random() * 151) + 1
+    }
+    return pokeId
+}
+
+const createPocket = async (urlKey, dayNum, res) => {
     if (isPastNthDayOfMonth(dayNum)) {
+        const existingPockets = await pocketRepository.getPocketsForKey(urlKey)
+        const existingPokeIds = existingPockets.map((pocket) => pocket.pokeId)
+        const pokeId = generateNewRandomPokeId(existingPokeIds)
         await pocketRepository.insertPocket(urlKey, dayNum, pokeId)
         console.log("Successful pocket insert!")
         res.status(200).send({urlKey: urlKey, dayNum: dayNum, pokeId: pokeId})
@@ -40,8 +51,8 @@ const createPocket = async (urlKey, dayNum, pokeId, res) => {
 }
 
 router.post('/create', (req, res) => {
-    const {key, dayNum, pokeId} = req.body
-    createPocket(key, dayNum, pokeId, res)
+    const {key, dayNum} = req.body
+    createPocket(key, dayNum, res)
 })
 
 const updatePocket = async (urlKey, dayNum, pokeId, res) => {
