@@ -18,6 +18,13 @@ export const ImageHolder = ({imageDataKey} :Props) => {
     const num:number = imageDataKey - 1
     const pokeName: string = defaultState.pokeDataList[num]
     return (
-        <img src={getSrc(pokeName)} alt={getAlt(pokeName)} />
+        <div className="text-center">
+            <div className="w-100 h-75 pt-3">
+                <img src={getSrc(pokeName)} alt={getAlt(pokeName)} />
+            </div>
+            <div>
+                <span>{pokeName}</span>
+            </div>
+        </div>
     )
 }
