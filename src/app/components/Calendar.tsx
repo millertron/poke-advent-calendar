@@ -20,6 +20,9 @@ export const Calendar =({pockets}: Props) => {
     return (
         <div style={calendarStyle}>
             {calendarPocketComponents}
+            <div className="mt-5">
+                <span className="pt-5 small">Pokémon images &amp; names © 1995-2019 Nintendo/Game Freak. Pokémon sprite links © Pokémon Database, 2008-2019.</span>
+            </div>        
         </div>
     )
 }
