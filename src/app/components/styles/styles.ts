@@ -4,7 +4,8 @@ export const navStyle = {
 }
 
 export const calendarStyle = {
-    background: "#ffcccc"
+    background: "#ffcccc",
+    minHeight: '100vh'
 }
 
 export const pocketCardStyle = {
