@@ -7,7 +7,7 @@ export const calendarStyle = {
     background: "#ffcccc"
 }
 
-export const cardStyle = {
+export const pocketCardStyle = {
     width: 120,
     height: 150
 }

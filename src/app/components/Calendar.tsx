@@ -11,29 +11,15 @@ type Props = {
 
 export const Calendar =({pockets}: Props) => {
 
-    let pocketGroups = []
-    const pocketGroupSize = 3
-    for (let i = 0; i < 25; i += pocketGroupSize) {
-        let pocketGroup:Pocket[] = []
-        for (let j = i; j < (i + pocketGroupSize); j++) {
-            if (j < pockets.length) {
-                pocketGroup.push(pockets[j])
-            }
-        }
-        pocketGroups.push(pocketGroup)
-    }
-
-    const pocketComponents = pocketGroups.map((pocketGroup, index) => (
-        <div className="row" key={index}>
-            {pocketGroup.map(pocket => (<CalendarPocket urlKey={pocket.urlKey} key={pocket.dayNum} dayNum={pocket.dayNum} />))}
+    const calendarPocketComponents = (
+        <div className="d-flex justify-content-center flex-wrap">
+            {pockets.map(pocket => (<CalendarPocket urlKey={pocket.urlKey} key={pocket.dayNum} dayNum={pocket.dayNum} />))}
         </div>
-    ))
+    )
 
     return (
-        <div>
-            <div style={calendarStyle}>
-                {pocketComponents}
-            </div>
+        <div style={calendarStyle}>
+            {calendarPocketComponents}
         </div>
     )
 }
