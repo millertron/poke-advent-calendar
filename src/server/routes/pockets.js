@@ -29,6 +29,10 @@ const isPastNthDayOfMonth = (n) => {
         && n <= today.getDate()
 }
 
+const isValidDayNum = (n) => {
+    return (n > 0 && n <= 25 && isPastNthDayOfMonth(n))
+}
+
 const generateNewRandomPokeId = (excludedValues) => {
     let pokeId = null
     while(pokeId == null || excludedValues.includes(pokeId)) {
@@ -38,7 +42,7 @@ const generateNewRandomPokeId = (excludedValues) => {
 }
 
 const createPocket = async (urlKey, dayNum, res) => {
-    if (isPastNthDayOfMonth(dayNum)) {
+    if (isValidDayNum(dayNum)) {
         const existingPockets = await pocketRepository.getPocketsForKey(urlKey)
         const existingPokeIds = existingPockets.map((pocket) => pocket.pokeId)
         const pokeId = generateNewRandomPokeId(existingPokeIds)
@@ -53,22 +57,6 @@ const createPocket = async (urlKey, dayNum, res) => {
 router.post('/create', (req, res) => {
     const {key, dayNum} = req.body
     createPocket(key, dayNum, res)
-})
-
-const updatePocket = async (urlKey, dayNum, pokeId, res) => {
-    if (isPastNthDayOfMonth(dayNum)) {
-        pocketRepository.updatePocket(urlKey, dayNum, pokeId, ()=> {
-            console.log("Successful pocket update!")
-            res.status(200).send({urlKey: urlKey, dayNum: dayNum, pokeId: pokeId})
-        })
-    } else {
-        res.status(400).send({ message: "Pocket not available" })
-    }
-}
-
-router.post('/update', (req, res) => {
-    const {key, dayNum, pokeId} = req.body
-    updatePocket(key, dayNum, pokeId, res)
 })
 
 module.exports = router;
