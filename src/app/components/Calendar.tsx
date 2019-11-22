@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { State } from '../server/defaultState'
 import CalendarPocket from './CalendarPocket'
 import { calendarStyle } from './styles/styles'
+import Snow from 'react-snow-effect'
 
 type Props = {
     pockets: Pocket[]
@@ -21,6 +22,7 @@ export const Calendar =({pockets}: Props) => {
 
     return (
         <div style={calendarStyle}>
+            <Snow />
             {calendarPocketComponents}
             <div className="mt-5">
                 <span className="pt-5 small">
