@@ -16,7 +16,7 @@ const connect = (done) => {
     }
 
     MongoClient.connect(`mongodb://${authentication}${databaseUrl}`, { useUnifiedTopology: true }, (err, client) => {
-        console.log("Connecting to database:", databaseUrl, databaseName, databaseUser)
+        console.log("Connecting to database:", `mongodb://${databaseUser}:xxxxx@${databaseUrl}`)
         if (err) {
             console.log("Error connecting to MongoDB")
             return done(err)
