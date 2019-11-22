@@ -28,7 +28,7 @@ const createImageHolderElement = (pocket :Pocket) => {
 const createButtonElement = (pocket: Pocket, openPocketFunction: Function) => {
     const disabled = !utils.isPastNthDayOfMonth(pocket.dayNum)
     return (
-        <button className="btn h-100" disabled={disabled} onClick={() => openPocketFunction(pocket.dayNum)}>
+        <button className="btn btn-light h-100" disabled={disabled} onClick={() => openPocketFunction(pocket.dayNum)}>
             {pocket.dayNum}
         </button>
     )
