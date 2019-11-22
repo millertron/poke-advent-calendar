@@ -35,4 +35,4 @@ const close = (done) => {
     }
 }
 
-export {connect, get, close}
+module.exports = {connect, get, close}

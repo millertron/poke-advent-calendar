@@ -9,7 +9,7 @@
     "start": "npm run server",
     "dev": "webpack-dev-server --open",
     "dev-server": "nodemon src/server/index --exec babel-node",
-    "server": "babel-node src/server/index"
+    "server": "node src/server/index.js"
   },
   "repository": {
     "type": "git",
