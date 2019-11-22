@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb')
 
-const databaseUrl = 'localhost:27017'
+const databaseUrl = process.env.MONGODB_URI || 'localhost:27017'
 const databaseName = 'myTestDB'
 
 var state = {

@@ -4,8 +4,10 @@ import * as actions from './actions'
 import * as utils from '../helper/utils'
 import Axios from 'axios'
 
+const serverUrl = process.env.NODE_ENV === `production` ? `` : "http://localhost:3000"
+
 function sendOpenPocketRequest(urlKey: string, dayNum: number) {
-    return Axios.post("http://localhost:3000/pockets/create", { key: urlKey, dayNum: dayNum })
+    return Axios.post(`${serverUrl}/pockets/create`, { key: urlKey, dayNum: dayNum })
 }
 
 export function* pocketOpenSaga(): SagaIterator {
