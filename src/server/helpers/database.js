@@ -1,7 +1,10 @@
 const MongoClient = require('mongodb')
 
 const databaseUrl = process.env.MONGODB_URI || 'localhost:27017'
-const databaseName = 'myTestDB'
+const databaseName = process.env.MONGODB_DB || 'myTestDB'
+const databaseUser = process.env.MONGODB_USERNAME
+const databasePassword = process.env.MONGODB_PASSWORD
+const authentication = (databaseUser && databasePassword) ? `${databaseUser}:${databasePassword}@` : ""
 
 var state = {
     db: null
@@ -12,7 +15,7 @@ const connect = (done) => {
         return done()
     }
 
-    MongoClient.connect(`mongodb://${databaseUrl}`, { useUnifiedTopology: true }, (err, client) => {
+    MongoClient.connect(`mongodb://${authentication}${databaseUrl}`, { useUnifiedTopology: true }, (err, client) => {
         if (err) {
             console.log("Error connecting to MongoDB")
             return done(err)
