@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { State } from '../server/defaultState'
 import CalendarPocket from './CalendarPocket'
 import { calendarStyle } from './styles/styles'
+//@ts-ignore
 import Snow from 'react-snow-effect'
 
 type Props = {
