@@ -3,8 +3,7 @@ import { take, call, put } from 'redux-saga/effects'
 import * as actions from './actions'
 import * as utils from '../helper/utils'
 import Axios from 'axios'
-
-const serverUrl = process.env.NODE_ENV === `production` ? `` : "http://localhost:3000"
+import { serverUrl } from '../helper/utils'
 
 function sendOpenPocketRequest(urlKey: string, dayNum: number) {
     return Axios.post(`${serverUrl}/pockets/create`, { key: urlKey, dayNum: dayNum })

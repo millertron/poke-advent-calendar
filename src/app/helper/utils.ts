@@ -1,3 +1,5 @@
+export const serverUrl = process.env.NODE_ENV === `production` ? `` : "http://localhost:3000"
+
 export function isPastNthDayOfMonth(n:number) :boolean {
     const monthToCheck = 11
     const yearToCheck = 2019

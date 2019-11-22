@@ -7,6 +7,7 @@ import axios from 'axios'
 import { Pocket } from '../types/types'
 import { defaultState } from '../server/defaultState'
 import { navStyle } from './styles/styles'
+import { serverUrl } from '../helper/utils'
 
 export const Main = () => {
     const { urlKey } = useParams()
@@ -16,7 +17,7 @@ export const Main = () => {
     React.useEffect(() => {
         
         if (defaultState.pockets.length === 0) {  
-            axios.get(`http://localhost:3000/pockets/${urlKey}`)
+            axios.get(`${serverUrl}/pockets/${urlKey}`)
                 .then((response) => {
                     setGreeting(`Season's greetings, ${response.data.user}`)
 
