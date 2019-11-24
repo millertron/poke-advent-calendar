@@ -7,7 +7,8 @@ const path = require('path')
 const app = express()
 const port = process.env.PORT || 3000
 
-app.get('/', (req, res) => res.send("Foo!"))
+app.get('/', (req, res) => res.send("For the advent calendar app, please navigate to &#39;/adventcalendar/&#39;" 
+    + " followed by the URL key provided by the administrator."))
 
 app.use(cors())
 app.use(express.json())
