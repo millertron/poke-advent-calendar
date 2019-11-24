@@ -35,6 +35,7 @@ export const Main = () => {
                 .catch((error) => {
                     console.log(error.response.status)
                     console.log(error.response.message)
+                    setGreeting("Please access this site using a valid URL key")
                 })
         }
     })
