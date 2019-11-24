@@ -27,6 +27,7 @@ export const Calendar =({pockets}: Props) => {
             {calendarPocketComponents}
             <div className="mt-5">
                 <span className="pt-5 small">
+                    Powered by Millertronic Systems™. <br/>
                     Pokémon images &amp; names © Nintendo/Game Freak 1995-{currentYear}. <br/>
                     Pokémon sprite links © Pokémon Database, 2008-{currentYear}.
                 </span>
