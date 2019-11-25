@@ -12,7 +12,8 @@ import { serverUrl } from '../helper/utils'
 export const Main = () => {
     const { urlKey } = useParams()
     const [thisStore, setStore] = React.useState(store())
-    const [greeting, setGreeting] = React.useState("")
+    const [greeting, setGreeting] = 
+        React.useState("Please access this site using a valid URL key")
 
     React.useEffect(() => {
         
@@ -33,9 +34,12 @@ export const Main = () => {
                     setStore(store())
                 })
                 .catch((error) => {
-                    console.log(error.response.status)
-                    console.log(error.response.message)
-                    setGreeting("Please access this site using a valid URL key")
+                    if (error.response){
+                        console.log(error.response.status)
+                        console.log(error.response.message)
+                    } else {
+                        setGreeting("Network Connection Unavailable")
+                    }
                 })
         }
     })
