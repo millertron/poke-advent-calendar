@@ -13,7 +13,7 @@ export const Main = () => {
     const { urlKey } = useParams()
     const [thisStore, setStore] = React.useState(store())
     const [greeting, setGreeting] = 
-        React.useState("Please access this site using a valid URL key")
+        React.useState("")
 
     React.useEffect(() => {
         
@@ -37,6 +37,7 @@ export const Main = () => {
                     if (error.response){
                         console.log(error.response.status)
                         console.log(error.response.message)
+                        setGreeting("Please access this site using a valid URL key")
                     } else {
                         setGreeting("Network Connection Unavailable")
                     }
@@ -50,6 +51,7 @@ export const Main = () => {
                 <h3 >{greeting}</h3>
             </nav>
             <Calendar />
+            
         </Provider>
     )
 }
