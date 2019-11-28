@@ -4,3 +4,10 @@ export type Pocket = {
     pokeId: number | null
 }
 
+export type ModalData = {
+    title?: string,
+    message?: string,
+    pokeId?: number,
+    displayed: boolean
+}
+

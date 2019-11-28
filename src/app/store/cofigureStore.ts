@@ -1,8 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { defaultState } from '../server/defaultState'
-import { Pocket } from '../types/types'
+import { Pocket, ModalData } from '../types/types'
 import * as actions from "./actions"
-import { isNull } from 'util'
 import { createLogger } from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
 import { pocketOpenSaga } from './sagas'
@@ -20,6 +19,16 @@ export const store = () => {
                     })
                 }
                 return pockets
+            },
+            modalData(modalData:ModalData = defaultState.modalData, action) :ModalData{
+                switch(action.type){
+                    case actions.DISPLAY_MODAL:
+                        return { displayed: true, title: action.title, message: action.message, pokeId: action.pokeId }
+                    case actions.CLOSE_MODAL:
+                        return { displayed: false }
+                    default:
+                        return modalData
+                }
             }
         }),
         applyMiddleware(createLogger({ collapsed: true }), sagaMiddleware)

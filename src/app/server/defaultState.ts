@@ -1,13 +1,15 @@
-import { Pocket } from '../types/types'
+import { Pocket, ModalData } from '../types/types'
 
 export type State = {
     pockets: Pocket[],
+    modalData: ModalData,
     pokeDataList: string[]
 }
 
 export const defaultState = <State>{
     pockets: <Pocket[]>[
     ],
+    modalData: <ModalData>{ displayed: false },
     pokeDataList: [
         "Bulbasaur",
         "Ivysaur",

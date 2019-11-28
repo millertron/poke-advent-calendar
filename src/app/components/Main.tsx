@@ -8,6 +8,7 @@ import { Pocket } from '../types/types'
 import { defaultState } from '../server/defaultState'
 import { navStyle } from './styles/styles'
 import { serverUrl } from '../helper/utils'
+import Modal from './Modal'
 
 export const Main = () => {
     const { urlKey } = useParams()
@@ -32,6 +33,7 @@ export const Main = () => {
                     pockets.sort((p1, p2) => p1.dayNum - p2.dayNum)
                     defaultState.pockets = pockets
                     setStore(store())
+                    document.getElementById("appModal")
                 })
                 .catch((error) => {
                     if (error.response){
@@ -51,7 +53,7 @@ export const Main = () => {
                 <h3 >{greeting}</h3>
             </nav>
             <Calendar />
-            
+            <Modal/>
         </Provider>
     )
 }
