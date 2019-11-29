@@ -16,5 +16,5 @@ export const getPokeName = (pokeId :number) :string  => defaultState.pokeDataLis
 
 export const  getPokeImgSrc = (pokeName :string) :string => {
     const formattedName = pokeName.toLowerCase().replace("'",'');
-    return "https://img.pokemondb.net/sprites/black-white/anim/normal/" + formattedName + ".gif"
+    return `https://img.pokemondb.net/sprites/black-white/anim/normal/${formattedName}.gif`
 }
