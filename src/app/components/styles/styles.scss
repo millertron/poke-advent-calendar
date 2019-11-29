@@ -51,7 +51,8 @@
 }
 
 .fade-in {
-    animation: fadein 1s
+    animation-name: fadein;
+    animation-duration: 1s;
 }
 
 .transparent {
