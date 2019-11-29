@@ -9,7 +9,7 @@ import './styles/styles.scss'
 
 export const openPocketModalTitle = "You caught a Pokémon!"
 export const errorModalTitle = "Oops...Error!"
-export const errorModalMessage = "Error occurred during pocket opening. Please try again later or contact site admin."
+export const errorModalMessage = "An error occurred during pocket opening. Please try again later or contact site admin."
 
 type Props = {
     modalData: ModalData,
