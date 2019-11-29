@@ -11,7 +11,7 @@ import './styles/styles.scss'
 import './styles/order.scss'
 
 type Props = {
-    urlKey: String,
+    urlKey: string,
     dayNum: number
     pocket?: Pocket
     openPocketFunction?: Function
@@ -63,7 +63,7 @@ export const CalendarPocket = ({pocket = blankPocket, openPocketFunction = blank
     )
 }
 
-const mapStateToFunction = (state:State, ownProps:Props) :Props => {
+const mapStateToProps = (state:State, ownProps:Props) :Props => {
     let ownPocket = ownProps.pocket
     let storePocket = state.pockets.find(pocket => pocket.dayNum === ownProps.dayNum) || ownPocket
     return {
@@ -77,4 +77,4 @@ const mapDispatchToProps = (dispatch :Dispatch, ownProps:Props) => ({
     openPocketFunction: () => dispatch(actions.requestOpenPocket(ownProps.urlKey, ownProps.dayNum))
 })
 
-export default connect(mapStateToFunction, mapDispatchToProps)(CalendarPocket)
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarPocket)

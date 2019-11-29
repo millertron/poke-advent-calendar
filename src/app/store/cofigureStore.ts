@@ -4,7 +4,7 @@ import { Pocket, ModalData } from '../types/types'
 import * as actions from "./actions"
 import { createLogger } from 'redux-logger'
 import createSagaMiddleware from 'redux-saga'
-import { pocketOpenSaga } from './sagas'
+import { pocketOpenSaga, closeModalSaga } from './sagas'
 
 export const store = () => {
     const sagaMiddleware = createSagaMiddleware()
@@ -35,6 +35,7 @@ export const store = () => {
     )
 
     sagaMiddleware.run(pocketOpenSaga)
+    sagaMiddleware.run(closeModalSaga)
     return store
 }
 

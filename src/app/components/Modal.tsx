@@ -46,7 +46,7 @@ export const Modal = ({ modalData, closeModalFunction = defaultCloseModalFunctio
                 <div className="modal-content text-center">
                     <div className="modal-header bg-dark-green">
                         <h4 className="modal-title">{modalData.title}</h4>
-                        <button type="button" className="close" onClick={()=>closeModalFunction()}>&times;</button>
+                        <button type="button" className="close" onClick={()=>closeModalFunction(modalData.message)}>&times;</button>
                     </div>
 
                     <div className="modal-body bg-med-red">
@@ -54,7 +54,7 @@ export const Modal = ({ modalData, closeModalFunction = defaultCloseModalFunctio
                     </div>
 
                     <div className="modal-footer bg-dark-green">
-                        <button type="button" className="btn btn-danger" onClick={()=>closeModalFunction()}>OK</button>
+                        <button type="button" className="btn btn-danger" onClick={()=>closeModalFunction(modalData.message)}>OK</button>
                     </div>
                 </div>
             </div>
@@ -65,8 +65,9 @@ export const Modal = ({ modalData, closeModalFunction = defaultCloseModalFunctio
 }
 
 const mapStateToProps = (state: State) :Props => ({ modalData: state.modalData })
+
 const mapDispatchToProps = (dispatch :Dispatch) => ({
-    closeModalFunction: () => dispatch(actions.closeModal())
+    closeModalFunction: (message? :string) => dispatch(actions.closeModal(message))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal)
