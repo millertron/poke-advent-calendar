@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { Dispatch } from "redux";
 import * as actions from '../store/actions'
 import * as utils from '../helper/utils'
-import { pocketCardStyle } from "./styles/styles";
+import './styles/styles.scss'
 
 type Props = {
     urlKey: String,
@@ -39,7 +39,7 @@ export const CalendarPocket = ({pocket = blankPocket, openPocketFunction = blank
     const pocketContent = isNull(pocket.pokeId) ? createButtonElement(pocket, openPocketFunction) : createImageHolderElement(pocket)
     return (
         <div className="m-1">
-            <div className="card" style={pocketCardStyle}>
+            <div className="card pocket-card">
                 {pocketContent}
             </div>
         </div>

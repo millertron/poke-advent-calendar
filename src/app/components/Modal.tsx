@@ -5,7 +5,7 @@ import { State } from '../server/defaultState'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import * as actions from '../store/actions'
-import { modalDisplayed, maskStyle, darkGreen, medRed } from './styles/styles'
+import './styles/styles.scss'
 
 export const openPocketModalTitle = "You caught a Pokémon!"
 export const errorModalTitle = "Oops...Error!"
@@ -41,25 +41,25 @@ const defaultCloseModalFunction = () => {
 export const Modal = ({ modalData, closeModalFunction = defaultCloseModalFunction } :Props) => {
     return modalData.displayed ? (
         <div>
-        <div id="appModal" className="modal" style={modalDisplayed}>
+        <div id="appModal" className="modal ib">
             <div className="modal-dialog">
                 <div className="modal-content text-center">
-                    <div className="modal-header" style={darkGreen}>
+                    <div className="modal-header bg-dark-green">
                         <h4 className="modal-title">{modalData.title}</h4>
                         <button type="button" className="close" onClick={()=>closeModalFunction()}>&times;</button>
                     </div>
 
-                    <div className="modal-body" style={medRed}>
+                    <div className="modal-body bg-med-red">
                         {composeContent(modalData.message, modalData.pokeId)}
                     </div>
 
-                    <div className="modal-footer" style={darkGreen}>
+                    <div className="modal-footer bg-dark-green">
                         <button type="button" className="btn btn-danger" onClick={()=>closeModalFunction()}>OK</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="modalMask" style={maskStyle} />
+        <div id="modalMask" className="mask ib" />
         </div>
     ) : (<noscript/>)
 }

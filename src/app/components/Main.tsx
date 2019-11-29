@@ -6,9 +6,9 @@ import { useParams } from 'react-router'
 import axios from 'axios'
 import { Pocket } from '../types/types'
 import { defaultState } from '../server/defaultState'
-import { navStyle } from './styles/styles'
 import { serverUrl } from '../helper/utils'
 import Modal from './Modal'
+import './styles/styles.scss'
 
 export const Main = () => {
     const { urlKey } = useParams()
@@ -49,7 +49,7 @@ export const Main = () => {
 
     return (
         <Provider store={thisStore}>
-            <nav style={navStyle} className="p-2">
+            <nav className="nav-red p-2">
                 <h3 >{greeting}</h3>
             </nav>
             <Calendar />

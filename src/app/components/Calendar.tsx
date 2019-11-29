@@ -3,7 +3,7 @@ import { Pocket } from '../types/types'
 import { connect } from 'react-redux'
 import { State } from '../server/defaultState'
 import CalendarPocket from './CalendarPocket'
-import { calendarStyle } from './styles/styles'
+import './styles/styles.scss'
 //@ts-ignore
 import Snow from 'react-snow-effect'
 
@@ -22,7 +22,7 @@ export const Calendar =({pockets}: Props) => {
     )
 
     return (
-        <div style={calendarStyle}>
+        <div className="calendar">
             <Snow />
             {calendarPocketComponents}
             <div className="mt-5">
