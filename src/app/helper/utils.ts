@@ -3,7 +3,7 @@ import { defaultState } from "../server/defaultState"
 export const serverUrl = process.env.NODE_ENV === `production` ? `` : "http://localhost:3000"
 
 export const isPastNthDayOfMonth = (n:number) :boolean => {
-    const monthToCheck = 11
+    const monthToCheck = process.env.NODE_ENV === `production` ? 12 : 11
     const yearToCheck = 2019
     const today: Date = new Date()
 

@@ -20,7 +20,7 @@ router.get('/:key', (req, res) => {
 })
 
 const isPastNthDayOfMonth = (n) => {
-    const monthToCheck = 11
+    const monthToCheck = process.env.NODE_ENV === `production` ? 12 : 11
     const yearToCheck = 2019
     const today = new Date()
 
