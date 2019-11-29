@@ -22,7 +22,7 @@ const composeContent = (message?: string, pokeId?: number) => {
         const stringContent = `You got ${pokeName}!`
         const img = (<img src={getPokeImgSrc(pokeName)} alt={pokeName}/>)
         return (
-            <div className="modalImageContent">
+            <div className="modalImageContent transparent slide-from-right">
                 <h3>{stringContent}</h3>
                 <div>
                     {img}
@@ -41,7 +41,7 @@ const defaultCloseModalFunction = () => {
 export const Modal = ({ modalData, closeModalFunction = defaultCloseModalFunction } :Props) => {
     return modalData.displayed ? (
         <div>
-        <div id="appModal" className="modal ib fadein">
+        <div id="appModal" className="modal ib fade-in">
             <div className="modal-dialog">
                 <div className="modal-content text-center">
                     <div className="modal-header bg-dark-green">
