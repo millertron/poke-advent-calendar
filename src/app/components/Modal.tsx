@@ -41,7 +41,7 @@ const defaultCloseModalFunction = () => {
 export const Modal = ({ modalData, closeModalFunction = defaultCloseModalFunction } :Props) => {
     return modalData.displayed ? (
         <div>
-        <div id="appModal" className="modal ib">
+        <div id="appModal" className="modal ib fadein">
             <div className="modal-dialog">
                 <div className="modal-content text-center">
                     <div className="modal-header bg-dark-green">
