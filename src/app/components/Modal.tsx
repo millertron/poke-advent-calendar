@@ -29,6 +29,20 @@ const composeContent = (message?: string, pokeId?: number) => {
                 </div>
             </div>
         ) 
+    } else if ("complete" === message) {
+        const img = (<img src={getPokeImgSrc("delibird")} alt="Merry Christmas!"/>)
+        return (
+            <div className="modalImageContent">
+                <p>
+                    You have completed this advent calendar!<br/>
+                    The creator of this site (whom you know well)<br/>
+                    wishes you a very happy Christmas!
+                </p>
+                <div className="ib">{img}</div>
+                <div className="ib mx-3">{img}</div>
+                <div className="ib">{img}</div>
+            </div>
+        )
     } else {
         return (<span>{message}</span>)
     }
