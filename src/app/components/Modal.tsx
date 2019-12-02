@@ -1,11 +1,12 @@
 import React from 'react'
 import { ModalData } from '../types/types'
-import { getPokeName, getPokeImgSrc } from '../helper/utils'
 import { State } from '../server/defaultState'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import * as actions from '../store/actions'
 import './styles/styles.scss'
+import { PokeModalContent } from './PokeModalContent'
+import { CompletionModalContent } from './CompletionModalContent'
 
 export const openPocketModalTitle = "You caught a Pokémon!"
 export const errorModalTitle = "Oops...Error!"
@@ -18,31 +19,9 @@ type Props = {
 
 const composeContent = (message?: string, pokeId?: number) => {
     if (pokeId) {
-        const pokeName = getPokeName(pokeId)
-        const stringContent = `You got ${pokeName}!`
-        const img = (<img src={getPokeImgSrc(pokeName)} alt={pokeName}/>)
-        return (
-            <div className="modalImageContent transparent slide-from-right">
-                <h3>{stringContent}</h3>
-                <div>
-                    {img}
-                </div>
-            </div>
-        ) 
+        return <PokeModalContent pokeId={pokeId} />
     } else if ("complete" === message) {
-        const img = (<img src={getPokeImgSrc("delibird")} alt="Merry Christmas!"/>)
-        return (
-            <div className="modalImageContent">
-                <p>
-                    You have completed this advent calendar!<br/>
-                    The creator of this site (whom you know well)<br/>
-                    wishes you a very happy Christmas!
-                </p>
-                <div className="ib">{img}</div>
-                <div className="ib mx-3">{img}</div>
-                <div className="ib">{img}</div>
-            </div>
-        )
+        return <CompletionModalContent />
     } else {
         return (<span>{message}</span>)
     }
